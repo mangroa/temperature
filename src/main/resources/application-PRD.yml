@@ -1,0 +1,18 @@
+name: Temperature ApplicationController Production
+
+spring:
+  datasource:
+    url: jdbc:sqlserver://13.238.100.187;databaseName=Elabor8
+    username: sa
+    password: E8techuser
+    driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    show-sql: true
+    hibernate:
+      dialect: org.hibernate.dialect.SQLServer2012Dialect
+      ddl-auto: none
+
+logging:
+  level:
+    root: INFO
+
