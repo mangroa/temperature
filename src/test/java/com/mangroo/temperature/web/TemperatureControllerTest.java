@@ -30,7 +30,7 @@ public class TemperatureControllerTest {
 //    private ApplicationContext applicationContext;
 //
 //    @Autowired
-//    private TemperatureService temperatureService;
+//    private TemperatureServiceTest temperatureService;
 //
 //    @Before
 //    public void printApplicationContext() {
