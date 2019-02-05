@@ -54,7 +54,7 @@ public class TemperatureControllerTest {
 
         String jsonString = asJsonString(temperatureToSave);
         logger.info("JSON to save: {}", jsonString);
-        mockMvc.perform(post("/temperature/temperatures")
+        mockMvc.perform(post("/temperatureReading/temperatures")
                 .content(jsonString)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
@@ -64,7 +64,7 @@ public class TemperatureControllerTest {
         return Temperature.builder()
                 .id(100L)
                 .name("Bedroom")
-                .temperature(25)
+                .temperatureReading(25)
                 .timestamp(new Date())
                 .build();
     }

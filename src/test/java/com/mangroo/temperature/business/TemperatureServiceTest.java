@@ -37,7 +37,7 @@ public class TemperatureServiceTest {
         Temperature s = Temperature.builder()
                 .id(100L)
                 .name("Kitchen")
-                .temperature(10)
+                .temperatureReading(10)
                 .build();
         temperatureArrayList.add(s);
         return temperatureArrayList;

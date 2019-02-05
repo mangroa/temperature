@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/temperature")
+@RequestMapping("/temperatureReading")
 public class TemperatureController {
 
     private Logger logger = LoggerFactory.getLogger(TemperatureController.class);
@@ -25,7 +25,7 @@ public class TemperatureController {
 
     @PostMapping(value = "/temperatures")
     public ResponseEntity<Temperature> saveTemperature(@RequestBody Temperature temperature) {
-        logger.info("Received Temperature to save name [{}] temperature [{}] Timestamp[{}]", temperature.getName(), temperature.getTemperature(), temperature.getTimestamp());
+        logger.info("Received Temperature to save name [{}] temperatureReading [{}] Timestamp[{}]", temperature.getName(), temperature.getTemperatureReading(), temperature.getTimestamp());
         return new ResponseEntity<>(temperatureService.save(temperature), HttpStatus.CREATED);
     }
 

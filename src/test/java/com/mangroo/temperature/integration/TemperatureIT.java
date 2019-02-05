@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         format = {
-                "json:target/temperature.json",
-                "html:target/temperature.html",
+                "json:target/temperatureReading.json",
+                "html:target/temperatureReading.html",
                 "pretty"
         },
         tags = {"~@ignored"},

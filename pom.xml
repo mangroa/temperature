@@ -121,7 +121,7 @@
                         <configuration>
                             <projectName>automation-demo</projectName>
                             <outputDirectory>${project.build.directory}/cucumber-reports</outputDirectory>
-                            <cucumberOutput>${project.build.directory}/temperature.json</cucumberOutput>
+                            <cucumberOutput>${project.build.directory}/temperatureReading.json</cucumberOutput>
                             <!--<skippedFails>true</skippedFails>-->
                             <!--<enableFlashCharts>false</enableFlashCharts>-->
                             <!--<buildNumber>${build_number}</buildNumber>-->

@@ -22,13 +22,13 @@ public class TemperatureRepositoryTest {
         Temperature temperature = Temperature.builder()
                 .id(100L)
                 .name("Bedroom")
-                .temperature(25)
+                .temperatureReading(25)
                 .build();
         temperatureRepository.save(temperature);
         List<Temperature> foundTemperature = temperatureRepository.findByName("Bedroom");
         assertThat(foundTemperature).hasSize(1);
         assertThat(foundTemperature.get(0).getName()).isEqualTo("Bedroom");
-        assertThat(foundTemperature.get(0).getTemperature()).isEqualTo(25);
+        assertThat(foundTemperature.get(0).getTemperatureReading()).isEqualTo(25);
 
     }
 }
