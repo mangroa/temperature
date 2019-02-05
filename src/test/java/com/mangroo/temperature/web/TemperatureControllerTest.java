@@ -1,11 +1,16 @@
 package com.mangroo.temperature.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mangroo.temperature.business.TemperatureService;
+import com.mangroo.temperature.data.Temperature;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -23,48 +28,52 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = TemperatureController.class)
 public class TemperatureControllerTest {
 
-//    @Autowired
-//    private MockMvc mockMvc;
-//
-//    @Autowired
-//    private ApplicationContext applicationContext;
-//
-//    @Autowired
-//    private TemperatureServiceTest temperatureService;
-//
-//    @Before
-//    public void printApplicationContext() {
-//        Arrays.stream(applicationContext.getBeanDefinitionNames())
-//                .map(name -> applicationContext.getBean(name).getClass().getName())
-//                .sorted()
-//                .forEach(System.out::println);
-//    }
-//
-//    @Test
-//    public void saveStaffReturnsHttpStatusCreated() throws Exception {
-//        TemperatureReading temperatureReadingToSave = createTemperatureReading();
-//        when(staffService.save(any())).thenReturn(temperatureReadingToSave);
-//
-//        mockMvc.perform(post("/temperature/TemperatureReadings")
-//                .content(asJsonString(temperatureReadingToSave))
-//                .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isCreated());
-//    }
-//
-//    private TemperatureReading createTemperatureReading() {
-//        return TemperatureReading.builder()
-//                .id(100L)
-//                .name("Bedroom")
-//                .temperature(25)
-//                .timestamp(new Date())
-//                .build();
-//    }
-//
-//    private static String asJsonString(final Object obj) {
-//        try {
-//            return new ObjectMapper().writeValueAsString(obj);
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+    Logger logger = LoggerFactory.getLogger(TemperatureControllerTest.class);
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    @MockBean
+    private TemperatureService temperatureService;
+
+    @Before
+    public void printApplicationContext() {
+        Arrays.stream(applicationContext.getBeanDefinitionNames())
+                .map(name -> applicationContext.getBean(name).getClass().getName())
+                .sorted()
+                .forEach(System.out::println);
+    }
+
+    @Test
+    public void saveTemperatureReturnsHttpStatusCreated() throws Exception {
+        Temperature temperatureToSave = createTemperature();
+        when(temperatureService.save(any())).thenReturn(temperatureToSave);
+
+        String jsonString = asJsonString(temperatureToSave);
+        logger.info("JSON to save: {}", jsonString);
+        mockMvc.perform(post("/temperature/temperatures")
+                .content(jsonString)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated());
+    }
+
+    private Temperature createTemperature() {
+        return Temperature.builder()
+                .id(100L)
+                .name("Bedroom")
+                .temperature(25)
+                .timestamp(new Date())
+                .build();
+    }
+
+    private static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
