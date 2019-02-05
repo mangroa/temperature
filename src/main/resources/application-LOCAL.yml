@@ -1,17 +1,5 @@
 name: Temperature ApplicationController Local
 
-spring:
-  datasource:
-    url: jdbc:sqlserver://localhost;databaseName=Elabor8
-    username: sa
-    password: E8techuser
-    driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
-  jpa:
-    show-sql: true
-    hibernate:
-      dialect: org.hibernate.dialect.SQLServer2012Dialect
-      ddl-auto: none
-
 logging:
   level:
     root: INFO

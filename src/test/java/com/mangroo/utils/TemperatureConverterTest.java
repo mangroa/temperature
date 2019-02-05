@@ -1,6 +1,5 @@
 package com.mangroo.utils;
 
-import com.mangroo.utils.TemperatureConverter;
 import org.junit.Test;
 
 import java.math.BigDecimal;

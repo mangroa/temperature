@@ -1,0 +1,5 @@
+name: Temperature Application Integration Default
+
+logging:
+  level:
+    root: INFO
