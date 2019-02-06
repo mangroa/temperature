@@ -4,6 +4,7 @@ amazon:
   aws:
     accesskey:
     secretkey:
+
 #  dynamodb:
 #    endpoint: http://PPlocalhost:8000/
 

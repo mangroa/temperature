@@ -2,10 +2,10 @@ name: Temperature ApplicationController Local
 
 amazon:
   aws:
-    accesskey: key
-    secretkey: secret
+    accesskey:
+    secretkey:
   dynamodb:
-    endpoint: http://localhost:8000/
+    #endpoint: http://localhost:8000/
 
 logging:
   level:
