@@ -1,5 +1,10 @@
 name: Temperature Application Integration Default
 
+amazon:
+  aws:
+    accesskey: ???
+    secretkey: ???
+
 logging:
   level:
     root: INFO

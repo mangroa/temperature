@@ -1,5 +1,11 @@
 name: Temperature ApplicationController Local
 
+amazon:
+  aws:
+    accesskey: key
+    secretkey: secret
+
+
 logging:
   level:
     root: INFO

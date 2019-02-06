@@ -62,8 +62,7 @@ public class TemperatureControllerTest {
 
     private Temperature createTemperature() {
         return Temperature.builder()
-                .id(100L)
-                .name("Bedroom")
+                .name("ControllerTest")
                 .temperatureReading(25)
                 .timestamp(new Date())
                 .build();

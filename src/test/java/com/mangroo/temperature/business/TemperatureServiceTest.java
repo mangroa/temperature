@@ -1,12 +1,13 @@
 package com.mangroo.temperature.business;
 
 import com.mangroo.temperature.data.Temperature;
-import com.mangroo.temperature.data.TemperatureRepository;
+import com.mangroo.temperature.data.repo.TemperatureRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,9 +36,9 @@ public class TemperatureServiceTest {
     private List<Temperature> temperatures() {
         ArrayList<Temperature> temperatureArrayList = new ArrayList<>();
         Temperature s = Temperature.builder()
-                .id(100L)
                 .name("Kitchen")
                 .temperatureReading(10)
+                .timestamp(new Date())
                 .build();
         temperatureArrayList.add(s);
         return temperatureArrayList;

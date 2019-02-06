@@ -1,7 +1,7 @@
 package com.mangroo.temperature.business;
 
 import com.mangroo.temperature.data.Temperature;
-import com.mangroo.temperature.data.TemperatureRepository;
+import com.mangroo.temperature.data.repo.TemperatureRepository;
 
 public class TemperatureService {
 
