@@ -2,8 +2,10 @@ name: Temperature ApplicationController Production
 
 amazon:
   aws:
-    accesskey: ???
-    secretkey: ???
+    accesskey:
+    secretkey:
+#  dynamodb:
+#    endpoint: http://PPlocalhost:8000/
 
 logging:
   level:

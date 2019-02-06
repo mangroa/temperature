@@ -20,7 +20,7 @@ public class ApplicationController {
     @RequestMapping(method={RequestMethod.GET},value={"/version"})
     public String getVersion() {
         logger.info("Application: {}", config.getName());
-        return "1.0";
+        return "1.0 " + config.getName();
     }
 
 }

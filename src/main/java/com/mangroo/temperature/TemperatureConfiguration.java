@@ -4,6 +4,7 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
@@ -11,6 +12,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.mangroo.temperature.business.TemperatureService;
+import com.mangroo.temperature.data.Temperature;
 import com.mangroo.temperature.data.repo.TemperatureRepository;
 import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +33,9 @@ public class TemperatureConfiguration {
 
     @Value("${amazon.aws.secretkey}")
     private String amazonAWSSecretKey;
+
+    @Value("${amazon.dynamodb.endpoint:}")
+    private String amazonDynamoDBEndpoint;
 
     public AWSCredentialsProvider amazonAWSCredentialsProvider() {
         return new AWSStaticCredentialsProvider(amazonAWSCredentials());
@@ -53,8 +58,21 @@ public class TemperatureConfiguration {
 
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {
-        return AmazonDynamoDBClientBuilder.standard().withCredentials(amazonAWSCredentialsProvider())
-                .withRegion(Regions.AP_SOUTHEAST_2).build();
+
+        AmazonDynamoDB amazonDynamoDB;
+
+        if (!StringUtils.isEmpty(amazonDynamoDBEndpoint)) {
+            amazonDynamoDB =  AmazonDynamoDBClientBuilder.standard()
+                    .withCredentials(amazonAWSCredentialsProvider())
+                    .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(amazonDynamoDBEndpoint, "AP_SOUTHEAST_2"))
+                    .build();
+        } else {
+            amazonDynamoDB =  AmazonDynamoDBClientBuilder.standard()
+                    .withCredentials(amazonAWSCredentialsProvider())
+                    .withRegion(Regions.AP_SOUTHEAST_2)
+                    .build();
+        }
+        return amazonDynamoDB;
     }
 
     @Bean

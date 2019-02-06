@@ -2,8 +2,8 @@ name: Temperature Application Integration Default
 
 amazon:
   aws:
-    accesskey: ???
-    secretkey: ???
+    accesskey: key
+    secretkey: secret
 
 logging:
   level:

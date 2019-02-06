@@ -104,6 +104,56 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <images>
+                        <image>
+                            <alias>dynamodb</alias>
+                            <name>amazon/dynamodb-local</name>
+                            <run>
+                                <wait>
+                                    <!--<log>mysqld: ready for connections</log>-->
+                                    <time>10000</time>
+                                </wait>
+                                <env>
+
+                                </env>
+                                <ports>
+                                    <port>8000:8000</port>
+                                </ports>
+                                <volumes>
+                                    <bind>
+
+                                    </bind>
+                                </volumes>
+                            </run>
+                        </image>
+                    </images>
+
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>docker:start</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>docker:stop</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+            </plugin>
+
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>
